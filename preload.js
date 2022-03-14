@@ -5,27 +5,23 @@ const jetpack = require('fs-jetpack')
 const crypto = require('crypto')
 
 contextBridge.exposeInMainWorld('electron', {
-  notificationApi: {
-    sendNotification(message) {
-      ipcRenderer.send('notify', message)
-    },
-  },
-
-  jp: {
-    write() {
-      // jetpack.write()
-      console.log('yo')
-    },
-
-    read() {
-      // jetpack.read()
-      console.log('what up?')
-    },
-
-    encrypt() {},
-
-    decrypt() {},
-  },
+  // notificationApi: {
+  //   sendNotification(message) {
+  //     ipcRenderer.send('notify', message)
+  //   },
+  // },
+  // jp: {
+  //   write() {
+  //     // jetpack.write()
+  //     console.log('yo')
+  //   },
+  //   read() {
+  //     // jetpack.read()
+  //     console.log('what up?')
+  //   },
+  //   encrypt() {},
+  //   decrypt() {},
+  // },
 })
 contextBridge.exposeInMainWorld('login', {
   loginCreds: {

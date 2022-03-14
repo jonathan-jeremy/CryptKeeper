@@ -46,10 +46,11 @@ ipcMain.handle('logged-in', (event, logIn) => {
   //digest hashes
   const compare1 = hash.update(JSON.stringify(logIn)).digest('hex')
   const compare2 = hash2.update(user).digest('hex')
-  // console.log('logIn: \n', compare1)
-  // console.log('user obj: \n', compare2)
+  console.log('logIn: \n', compare1)
+  console.log('user obj: \n', compare2)
 
   //compare hashes
+  console.log(compare1 === compare2)
   return compare1 === compare2
 })
 
