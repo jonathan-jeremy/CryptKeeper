@@ -12,8 +12,8 @@ let win;
 const isDev = !app.isPackaged;
 
 const user = JSON.stringify({
-  username: '',
-  password: '',
+  username: 'username',
+  password: 'password',
 });
 
 function createWindow() {
@@ -59,7 +59,7 @@ ipcMain.on('save', async (event, data) => {
   let ciphertext = CryptoJS.AES.encrypt(data, 'secret key 123').toString();
   fs.writeFile('/Users/jondonadio/test.txt', ciphertext, (err) => {
     if (!err) {
-      console.log('file written');
+      console.log(`file written to /Users/jondonadio/test.txt`);
     } else {
       console.log(err);
     }
@@ -76,14 +76,13 @@ ipcMain.handle('open-file-dialog', (event, config) => {
       event.returnValue = undefined;
       return;
     }
-    let file = fs.readFileSync(path);
-    return file.toString();
+    let file = fs.readFileSync(path).toString();
+    let bytes = CryptoJS.AES.decrypt(file, 'secret key 123');
+    let originalText = bytes.toString(CryptoJS.enc.Utf8);
+    return originalText;
   } catch (error) {
     console.log(error);
   }
 });
-
-// var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
-// var originalText = bytes.toString(CryptoJS.enc.Utf8);
 
 app.whenReady().then(createWindow);

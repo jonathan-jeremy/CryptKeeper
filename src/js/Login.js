@@ -47,14 +47,3 @@ export default function Login() {
     </div>
   );
 }
-
-{
-  /* <h1>I am App Component!!!</h1>
-      <button onClick={() => {
-        electron.notificationApi.sendNotification('My custom notification!');
-      }}>Notify</button>
-
-      <button onClick={() => {
-        electron.Api.sendData('test');
-      }}>Send</button>  */
-}

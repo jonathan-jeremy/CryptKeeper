@@ -8,7 +8,6 @@ contextBridge.exposeInMainWorld('electron', {
   },
 
   jp: {
- 
     async openFile() {
       // jetpack.read()
       const data = await ipcRenderer.invoke('open-file-dialog');
@@ -19,10 +18,6 @@ contextBridge.exposeInMainWorld('electron', {
     sendData(data) {
       ipcRenderer.send('save', data);
     },
-
-    encrypt() {},
-
-    decrypt() {},
   },
 });
 contextBridge.exposeInMainWorld('login', {
@@ -35,8 +30,4 @@ contextBridge.exposeInMainWorld('login', {
       return false;
     },
   },
-});
-
-ipcRenderer.on('fileData', (event, data) => {
-  console.log(data);
 });

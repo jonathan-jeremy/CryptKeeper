@@ -17,18 +17,22 @@ const Crypt = () => {
 
   return (
     <div>
-      <p>Unencrypted text:{textFromFile}</p>
-      <form id="encrypt-form" onSubmit={handleSubmit}>
-        <label htmlFor="textToEncrypt">Text to encrypt: </label>
-        <input name="textToEncrypt" onChange={handletextToEncrypt} value={textToEncrypt} />
-
-        <button type="submit" className="submit-btn">
-          Save Data
+      <div>
+        <form id="encrypt-form" onSubmit={handleSubmit}>
+          <label htmlFor="textToEncrypt">Text to encrypt: </label>
+          <input name="textToEncrypt" onChange={handletextToEncrypt} value={textToEncrypt} />
+          <button type="submit" className="submit-btn">
+            Save To Filesystem
+          </button>
+        </form>
+      </div>
+      <div>
+        <br />
+        <button type="button" onClick={handleOpen}>
+          Decrypt File
         </button>
-      </form>
-      <button type="button" onClick={handleOpen}>
-        open file
-      </button>
+        <p>Unencrypted text:{textFromFile}</p>
+      </div>
     </div>
   );
 };
