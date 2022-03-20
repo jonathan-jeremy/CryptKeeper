@@ -9,7 +9,6 @@ contextBridge.exposeInMainWorld('electron', {
 
   jp: {
     async openFile() {
-      // jetpack.read()
       const data = await ipcRenderer.invoke('open-file-dialog');
       console.log(data);
       return data;
