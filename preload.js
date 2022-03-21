@@ -1,44 +1,32 @@
-const { ipcRenderer, contextBridge } = require('electron')
-const fs = require('fs')
-const path = require('path')
-const jetpack = require('fs-jetpack')
-const crypto = require('crypto')
+const { ipcRenderer, contextBridge } = require('electron');
 
 contextBridge.exposeInMainWorld('electron', {
   notificationApi: {
     sendNotification(message) {
-      ipcRenderer.send('notify', message)
+      ipcRenderer.send('notify', message);
     },
   },
 
   jp: {
-    write() {
-      // jetpack.write()
-      console.log('yo')
+    async openFile() {
+      const data = await ipcRenderer.invoke('open-file-dialog');
+      console.log(data);
+      return data;
     },
 
-    read() {
-      // jetpack.read()
-      console.log('what up?')
+    sendData(data) {
+      ipcRenderer.send('save', data);
     },
-
-    encrypt() {},
-
-    decrypt() {},
   },
-})
+});
 contextBridge.exposeInMainWorld('login', {
   loginCreds: {
     async loggedIn(user) {
-      const logCheck = await ipcRenderer.invoke('logged-in', user)
+      const logCheck = await ipcRenderer.invoke('logged-in', user);
       if (logCheck === true) {
-        return true
+        return true;
       }
-      return false
+      return false;
     },
   },
-})
-
-// ipcRenderer.on('user', (event, user) => {
-//   console.log(JSON.parse(user))
-// })
+});
